@@ -10,8 +10,15 @@
     - node2:192.168.33.11
     - node3:192.168.33.12
   - Riak-CS 3台リング構成
+    - node1
+      - riak/riak-cs/stanchion
+    - node2
+      - riak/riak-cs
+    - node3
+      - riak/riak-cs 
 
 
+- riak/riak-cs/stanchionは以下の場所からダウンロードする
 ```
 # wget http://s3.amazonaws.com/downloads.basho.com/riak/1.4/1.4.1/rhel/6/riak-1.4.1-1.el6.x86_64.rpm
 # wget http://s3.amazonaws.com/downloads.basho.com/stanchion/1.4/1.4.0/rhel/6/stanchion-1.4.0-1.el6.x86_64.rpm
