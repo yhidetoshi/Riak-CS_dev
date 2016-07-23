@@ -250,6 +250,8 @@ Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
     -  `{anonymous_user_creation, true}, `
 - riak-csを再起動する
   - `# riak-cs restart`
+- 鍵を生成したらfalseに戻して、riak-csを再起動する
+  - trueのままだと管理者以外でも鍵を生成できてしまうので注意 
 
 **[Access_Kyeを生成する]**
 ```
@@ -257,3 +259,12 @@ Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 
 {"email":"admin@riak-dev.local","display_name":"admin","name":"admin","key_id":"NPQXGFHH7RA_TL6OAY4R","key_secret":"RHE_u2-66_AALsed0e1orQUVcRVe4zRjG3WO-A==","id":"ed2a621b52c593444cbb6a6f17e286f0c110e55b770568632d2de75841cdef65","status":"enabled"}[root@chef-client1 riak-cs
 ```
+
+- `/etc/riak-cs/app.config`に先ほど生成したid,keyをセットする
+  - 対象ノードはnode1,node2,node3 
+```
+{admin_key, "NPQXGFHH7RA_TL6OAY4R"},
+{admin_secret, "RHE_u2-66_AALsed0e1orQUVcRVe4zRjG3WO-A=="}
+```
+- `/etc/stanchion/app.config`に先ほど生成したid,keyをセットする
+  - 対象ノードはnode1
