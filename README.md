@@ -99,3 +99,53 @@
  ## Cookie for distributed erlang.  All nodes in the same cluster
  ## should use the same cookie or they will not be able to communicate.
 ```
+
+### Riak-CSの設定変更
+- `/etc/riak-cs/app.config`を設定する
+```
+# diff -u app.config.org app.config
+--- app.config.org	2013-08-12 18:33:52.000000000 +0000
++++ app.config	2016-07-23 12:52:29.092037758 +0000
+@@ -7,16 +7,16 @@
+
+               %% Riak CS http/https port and IP address to listen at
+               %% for object storage activity
+-              {cs_ip, "127.0.0.1"},
++              {cs_ip, "192.168.33.10"},
+               {cs_port, 8080 } ,
+
+               %% Riak node to which Riak CS accesses
+-              {riak_ip, "127.0.0.1"},
++              {riak_ip, "192.168.33.10"},
+               {riak_pb_port, 8087 } ,
+
+               %% Configuration for access to request
+               %% serialization service
+-              {stanchion_ip, "127.0.0.1"},
++              {stanchion_ip, "192.168.33.10"},
+               {stanchion_port, 8085 },
+               {stanchion_ssl, false },
+
+@@ -52,7 +52,7 @@
+               %% Root host name which Riak CS accepts.
+               %% Your CS bucket at s3.example.com will be accessible
+               %% via URL like http://bucket.s3.example.com/object/name
+-              {cs_root_host, "s3.amazonaws.com"},
++              {cs_root_host, "riak-dev.hoge.jp"},
+
+               %% Connection pools
+               %% Each pool is specified as a nested
+```
+- `/etc/riak-cs/vm.args`を設定する
+```
+# diff -u vm.args.org vm.args
+--- vm.args.org	2013-08-12 18:33:52.000000000 +0000
++++ vm.args	2016-07-23 12:54:37.060040749 +0000
+@@ -1,5 +1,5 @@
+ ## Name of the riak node
+--name riak-cs@127.0.0.1
++-name riak-cs@192.168.33.10
+
+ ## Cookie for distributed erlang.  All nodes in the same cluster
+ ## should use the same cookie or they will not be able to communicate.
+```
