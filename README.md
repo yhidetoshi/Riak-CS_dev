@@ -149,3 +149,42 @@
  ## Cookie for distributed erlang.  All nodes in the same cluster
  ## should use the same cookie or they will not be able to communicate.
 ```
+
+### Stanchionを設定変更する
+- `/etc/stanchion/app.config`を設定する
+```
+# diff -u app.config.org app.config
+--- app.config.org	2013-08-12 19:52:40.000000000 +0000
++++ app.config	2016-07-23 13:00:38.677033725 +0000
+@@ -3,7 +3,7 @@
+ [
+  %% Stanchion config
+  {stanchion, [
+-                   {stanchion_ip, "127.0.0.1"},
++                   {stanchion_ip, "192.168.33.10"},
+                    {stanchion_port, 8085 } ,
+
+                    %%{ssl, [
+@@ -14,7 +14,7 @@
+                    {auth_bypass, false } ,
+
+                    %% Riak connection details
+-                   {riak_ip, "127.0.0.1"},
++                   {riak_ip, "192.168.33.10"},
+                    {riak_pb_port, 8087 },
+
+                    %% Admin user credentials
+```
+- `/etc/stanchion/vm.args`を設定する
+```
+# diff -u vm.args.org vm.args
+--- vm.args.org	2013-08-12 19:52:40.000000000 +0000
++++ vm.args	2016-07-23 13:03:57.399033400 +0000
+@@ -1,5 +1,5 @@
+ ## Name of the riak node
+--name stanchion@127.0.0.1
++-name stanchion@192.168.33.10
+
+ ## Cookie for distributed erlang.  All nodes in the same cluster
+ ## should use the same cookie or they will not be able to communicate.
+```
