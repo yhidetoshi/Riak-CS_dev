@@ -195,3 +195,47 @@
  ## Cookie for distributed erlang.  All nodes in the same cluster
  ## should use the same cookie or they will not be able to communicate.
 ```
+
+### Riak/Riak-CS/Stanchionの起動
+- 各nodeで実行(stanchionの起動はnode1だけ)
+```
+# riak start
+# riak ping
+pong
+# stanchion start
+# stanchion ping
+pong
+```
+
+- node2,node3からリングへ参加する
+```
+# riak-admin cluster join riak@192.168.33.10
+
+# riak-admin cluster plan
+# riak-admin cluster commit
+```
+
+- node2,node3が参加していない状態(node1から確認)
+```
+# riak-admin member_status
+================================= Membership ==================================
+Status     Ring    Pending    Node
+-------------------------------------------------------------------------------
+valid     100.0%      --      'riak@192.168.33.10'
+-------------------------------------------------------------------------------
+Valid:1 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
+```
+
+
+- node2,3がリングへ参加した状態(node1から確認)
+```
+# riak-admin member_status
+================================= Membership ==================================
+Status     Ring    Pending    Node
+-------------------------------------------------------------------------------
+valid      34.4%      --      'riak@192.168.33.10'
+valid      32.8%      --      'riak@192.168.33.11'
+valid      32.8%      --      'riak@192.168.33.12'
+-------------------------------------------------------------------------------
+Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
+```
