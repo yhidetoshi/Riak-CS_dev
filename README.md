@@ -26,7 +26,6 @@
   - stanchion
 
 ```
-[node1]
 # wget http://s3.amazonaws.com/downloads.basho.com/riak/1.4/1.4.1/rhel/6/riak-1.4.1-1.el6.x86_64.rpm
 # wget http://s3.amazonaws.com/downloads.basho.com/stanchion/1.4/1.4.0/rhel/6/stanchion-1.4.0-1.el6.x86_64.rpm
 # wget http://s3.amazonaws.com/downloads.basho.com/riak-cs/1.4/1.4.0/rhel/6/riak-cs-1.4.0-1.el6.x86_64.rpm
@@ -36,8 +35,10 @@
 # rpm -ivh stanchion-1.4.0-1.el6.x86_64.rpm
 
 # cp -pr app.config app.config.org
-
 ```
+
+
+#### Riakを設定変更する
 - `/etc/riak/app.conf`を編集する
 ```
 # diff -u app.config.org app.config
@@ -83,4 +84,18 @@
              %% raw_name is the first part of all URLS used by the Riak raw HTTP
              %% interface.  See riak_web.erl and raw_http_resource.erl for
              %% details.
+```
+
+- `/etc/riak/vm.args`を編集する
+```
+# diff -u vm.args.org vm.args
+--- vm.args.org	2013-08-01 21:29:20.000000000 +0000
++++ vm.args	2016-07-23 12:43:34.214035178 +0000
+@@ -1,5 +1,5 @@
+ ## Name of the riak node
+--name riak@127.0.0.1
++-name riak@192.168.33.10
+
+ ## Cookie for distributed erlang.  All nodes in the same cluster
+ ## should use the same cookie or they will not be able to communicate.
 ```
