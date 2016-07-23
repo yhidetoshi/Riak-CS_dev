@@ -35,15 +35,15 @@
 # rpm -ivh riak-cs-1.4.0-1.el6.x86_64.rpm
 # rpm -ivh stanchion-1.4.0-1.el6.x86_64.rpm
 
-# cd /etc/riak
 # cp -pr app.config app.config.org
+
 ```
-- アドレスを設定する
+- `/etc/riak/app.conf`を編集する
 ```
 # diff -u app.config.org app.config
 --- app.config.org	2013-08-01 21:29:20.000000000 +0000
-+++ app.config	2016-07-23 12:21:24.037029730 +0000
-@@ -12,7 +12,7 @@
++++ app.config	2016-07-23 12:40:00.676033801 +0000
+@@ -12,14 +12,14 @@
 
              %% pb is a list of IP addresses and TCP ports that the Riak
              %% Protocol Buffers interface will bind.
@@ -52,5 +52,35 @@
              ]},
 
   %% Riak Core config
-
+  {riak_core, [
+               %% Default location of ringstate
+               {ring_state_dir, "/var/lib/riak/ring"},
+-
++	      {default_bucket_props, [{allow_mult, true}]},
+               %% Default ring creation size.  Make sure it is a power of 2,
+               %% e.g. 16, 32, 64, 128, 256, 512 etc
+               %{ring_creation_size, 64},
+@@ -80,8 +80,20 @@
+  {riak_kv, [
+             %% Storage_backend specifies the Erlang module defining the storage
+             %% mechanism that will be used on this node.
+-            {storage_backend, riak_kv_bitcask_backend},
+-
++            %%{storage_backend, riak_kv_bitcask_backend},
++            {add_paths, ["/usr/lib64/riak-cs/lib/riak_cs-1.4.0/ebin"]},
++ 	    {storage_backend, riak_cs_kv_multi_backend},
++ 	    {multi_backend_prefix_list, [{<<"0b:">>, be_blocks}]},
++ 	    {multi_backend_default, be_default},
++ 	    {multi_backend, [
++   		{be_default, riak_kv_eleveldb_backend, [
++     		    {max_open_files, 50},
++       			{data_root, "/var/lib/riak/leveldb"}
++  	        ]},
++     	       	  {be_blocks, riak_kv_bitcask_backend, [
++  		     {data_root, "/var/lib/riak/bitcask"}
++ 	        ]}
++ 	    ]},
+             %% raw_name is the first part of all URLS used by the Riak raw HTTP
+             %% interface.  See riak_web.erl and raw_http_resource.erl for
+             %% details.
 ```
