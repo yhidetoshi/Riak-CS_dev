@@ -268,3 +268,7 @@ Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 ```
 - `/etc/stanchion/app.config`に先ほど生成したid,keyをセットする
   - 対象ノードはnode1
+```
+{admin_key, "NPQXGFHH7RA_TL6OAY4R"},
+{admin_secret, "RHE_u2-66_AALsed0e1orQUVcRVe4zRjG3WO-A=="}
+```
