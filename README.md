@@ -38,7 +38,7 @@
 ```
 
 
-#### Riakを設定変更する
+### Riakを設定変更する
 - `/etc/riak/app.conf`を編集する
 ```
 # diff -u app.config.org app.config
