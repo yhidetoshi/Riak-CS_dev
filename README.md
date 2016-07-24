@@ -3,6 +3,7 @@
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Riak-CS/riak-cs-fig2.png)
 
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Riak-CS/fluentd-riak.png)
 **[環境]**
 - Vagrant
   - CentOS6.7
