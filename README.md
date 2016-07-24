@@ -45,7 +45,7 @@
 ```
 
 
-### Riakを設定変更する
+### 【Riakを設定変更する】
 - `/etc/riak/app.conf`を編集する
 ```
 # diff -u app.config.org app.config
@@ -107,7 +107,7 @@
  ## should use the same cookie or they will not be able to communicate.
 ```
 
-### Riak-CSの設定変更
+### 【Riak-CSの設定変更】
 - `/etc/riak-cs/app.config`を設定する
 ```
 # diff -u app.config.org app.config
@@ -157,7 +157,7 @@
  ## should use the same cookie or they will not be able to communicate.
 ```
 
-### Stanchionを設定変更する
+### 【Stanchionを設定変更する】
 - `/etc/stanchion/app.config`を設定する
 ```
 # diff -u app.config.org app.config
@@ -196,7 +196,7 @@
  ## should use the same cookie or they will not be able to communicate.
 ```
 
-### Riak/Riak-CS/Stanchionの起動
+### 【Riak/Riak-CS/Stanchionの起動】
 - 各nodeで実行(stanchionの起動はnode1だけ)
 ```
 # riak start
@@ -240,7 +240,7 @@ valid      32.8%      --      'riak@192.168.33.12'
 Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 ```
 
-### 管理者用のAccess_Keyを作成する
+### 【管理者用のAccess_Keyを作成する】
 - 対象ノード
   - node1 
 - `/etc/riak-cs/app.config`を編集する
@@ -274,7 +274,7 @@ Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 ```
 鍵の配置が完了したら、riak-cs/stanchionを再起動する
 
-### s3cmdでオブジェクトを作成してみる
+### 【s3cmdでオブジェクトを作成してみる】
 
 ```
 # wget http://sourceforge.net/projects/s3tools/files/s3cmd/1.5.0-rc1/s3cmd-1.5.0-rc1.tar.gz
@@ -285,6 +285,25 @@ Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 # s3cmd --version
 s3cmd version 1.5.0-rc1
 # s3cmd --configure
+
+→ 本環境用に.s3cfgを作成したファイルはs3cmdディレクトリの配下に格納
+
+- hogeというバケットを作成する
+# s3cmd mb s3://hoge
+
+- バケットを確認
+# s3cmd ls
+2016-07-24 05:21  s3://hoge
+
+- hogeバケットにオブジェクトをputする
+# s3cmd put hoge-obj.txt s3://hoge
+WARNING: Module python-magic is not available. Guessing MIME types based on file extensions.
+hoge-obj.txt -> s3://hoge/hoge-obj.txt  [1 of 1]
+ 0 of 0     0% in    0s     0.00 B/s  done
+
+- オブジェクトの確認
+# s3cmd ls s3://hoge
+2016-07-24 05:34         0   s3://hoge/hoge-obj.txt
 ```
 
 
