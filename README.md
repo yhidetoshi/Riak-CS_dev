@@ -311,4 +311,6 @@ hoge-obj.txt -> s3://hoge/hoge-obj.txt  [1 of 1]
 2016-07-24 05:34         0   s3://hoge/hoge-obj.txt
 ```
 
-
+### 【Fluentdと連携する】
+- td-agentをインストール
+  - `curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh` 
