@@ -272,3 +272,6 @@ Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 {admin_key, "NPQXGFHH7RA_TL6OAY4R"},
 {admin_secret, "RHE_u2-66_AALsed0e1orQUVcRVe4zRjG3WO-A=="}
 ```
+鍵の配置が完了したら、riak-cs/stanchionを再起動する
+
+
