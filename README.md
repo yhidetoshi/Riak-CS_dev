@@ -274,4 +274,17 @@ Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 ```
 鍵の配置が完了したら、riak-cs/stanchionを再起動する
 
+### s3cmdでオブジェクトを作成してみる
+
+```
+# wget http://sourceforge.net/projects/s3tools/files/s3cmd/1.5.0-rc1/s3cmd-1.5.0-rc1.tar.gz
+# tar zxvf s3cmd-1.5.0-rc1.tar.gz
+# cd s3cmd-1.5.0-rc1
+# yum install python-dateutil -y
+# python setup.py install
+# s3cmd --version
+s3cmd version 1.5.0-rc1
+# s3cmd --configure
+```
+
 
