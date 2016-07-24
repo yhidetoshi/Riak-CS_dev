@@ -6,10 +6,13 @@
 **[環境]**
 - Vagrant
   - CentOS6.7
+    - client1:192.168.1.21 
     - node1:192.168.33.10
     - node2:192.168.33.11
     - node3:192.168.33.12
-  - Riak-CS 3台リング構成
+  - Riak-CS 3台リング構成 & s3cmd(client1)
+    - client1
+      - s3cmd 
     - node1
       - riak/riak-cs/stanchion
     - node2
@@ -276,6 +279,7 @@ Valid:3 / Leaving:0 / Exiting:0 / Joining:0 / Down:0
 
 ### 【s3cmdでオブジェクトを作成してみる】
 
+**[client1]**
 ```
 # wget http://sourceforge.net/projects/s3tools/files/s3cmd/1.5.0-rc1/s3cmd-1.5.0-rc1.tar.gz
 # tar zxvf s3cmd-1.5.0-rc1.tar.gz
