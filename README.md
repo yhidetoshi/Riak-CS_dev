@@ -313,7 +313,7 @@ hoge-obj.txt -> s3://hoge/hoge-obj.txt  [1 of 1]
 
 ### 【Fluentdと連携する】
 - td-agentをインストール
-  - `curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh` 
+  - `curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh` 
 
 - Apacheのログをtailしてs3(Riak-cs)へ転送する
  - `yum -y install httpd`
